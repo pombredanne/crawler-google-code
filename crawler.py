@@ -141,7 +141,7 @@ class Spider(HTMLParser):
 				self.closeListOfProjects = True
 			self.divTagCount -= 1
 			self.listPages = False
-					
+		
 		if tag == 'table':
 			print '-------------------------------------'
 			self.textCountProjects = False
@@ -154,14 +154,14 @@ class Spider(HTMLParser):
 			if self.projectTemp:
 				self.listProjects.append(self.projectTemp)
 				self.projectTemp = {}
-			
+		
 		if tag == 'span' and self.labels:
 			self.labels = False
 			
 			self.projectTemp['labels'] = self.listLabels
 			self.listLabels = []
 			self.labelTemp = {}
-			
+		
 		if tag == 'a':
 			self.label = False
 			if self.linkPage:
@@ -197,7 +197,7 @@ class Spider(HTMLParser):
 				print 'label name->' + self.labelTemp['name']
 				self.listLabels.append(self.labelTemp)
 				self.labelTemp = {}
-				
+		
 		if self.listPages:
 			if self.linkPage and data.strip() == 'Next':
 				self.nextPage = self.pageHref
@@ -275,7 +275,7 @@ def main():
 		else:
 			pass
 			#cur.execute('UPDATE google_code SET "' + number_projects + '" WHERE type = "number_projects"');
-			
+		
 		for label in project['labels']:
 			cur.execute('SELECT id FROM project WHERE id_in_google = "' + project['id'] + '"')
 			project_id = cur.fetchall()

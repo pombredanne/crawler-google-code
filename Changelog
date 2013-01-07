@@ -1,7 +1,10 @@
+2013-01-07 MD (tres.14159@gmail.com)
+	- crawler.py: only cleaned source code style.
+
 2010-08-10 MD (tres.14159@gmail.com)
 	- License.txt: added first version of license version in GPLv3 or
 	later.
-
+	
 	- stadistics.all.output.html, stadistics.projects.output.html
 	stadistics.tags.output.html: added a output page for execution of
 	2010-08-09.
@@ -10,7 +13,7 @@
 	
 	- db.sql: first versión of db struct for sqlite, this is inclomplete
 	please check the crawler.db to know the structure.
-
+	
 	- crawler.py: added first version of python crawler.
 	
 	- Changelog: added first version of this file.
