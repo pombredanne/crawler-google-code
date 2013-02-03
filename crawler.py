@@ -77,7 +77,7 @@ class Spider(HTMLParser):
 			self.feed(req.read())
 		except:
 			self.errorUrl = True
-			print("Error")
+			print("[ERROR] Error URL")
 		else:
 			self.errorUrl = False
 	
@@ -100,13 +100,13 @@ class Spider(HTMLParser):
 				if 'class' in attrsDict:
 					if attrsDict['class'] == 'mainhdr':
 						self.textCountProjects = True
-			
+		
 		if tag == 'td':
 			if self.project:
 				self.tdTagCount += 1
 			if self.textCountProjects:
 				self.tdTagCountTextCountProjects += 1
-			
+		
 		if tag == 'a':
 			if self.listPages:
 				if 'href' in attrsDict:
@@ -216,7 +216,6 @@ def main():
 	cur = db.cursor()
 	
 	while scan:
-		count += 1
 		print("Page %d" % count)
 		
 		old_stdout = sys.stdout
@@ -228,25 +227,23 @@ def main():
 		sys.stdout = old_stdout 
 		
 		if spider.errorUrl:
-			print("Error url: %s" % urlTemp)
+			print("[ERROR] Error url: %s" % urlTemp)
 			tries += 1
-			count -= 1
-			print("Try %d" % tries)
+			print("[ERROR] Try %d" % tries)
 			if tries > 10:
-				break
-			else:
-				continue
+				scan = False
 		else:
+			count += 1
 			tries = 0
 			listProjects = listProjects + spider.listProjects
-		
-		if spider.nextPage:
-			urlTemp = url.replace('search', spider.nextPage)
-		else:
-			break
-		
-		number_projects = spider.number_projects
-		spider = None
+			
+			if spider.nextPage:
+				urlTemp = url.replace('search', spider.nextPage)
+			else:
+				scan = False
+			
+			number_projects = spider.number_projects
+			spider = None
 	
 	
 	cur.execute('SELECT * FROM google_code WHERE type = "number_projects";');
