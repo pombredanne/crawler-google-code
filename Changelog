@@ -1,4 +1,11 @@
 2013-02-03 MD (tres.14159@gmail.com)
+	- new/crawler.py: started to code the first new version of crawler.
+	
+	- stadistics.tags.output.html, crawler.db,
+	stadistics.all.output.html, stadistics.projects.output.html: upload
+	the last execution of crawler.
+
+2013-02-03 MD (tres.14159@gmail.com)
 	- crawler.py: only cleaned source code style.
 	- new: started to create new code.
 	
